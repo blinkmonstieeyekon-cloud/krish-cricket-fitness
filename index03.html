@@ -1,0 +1,1102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cricket Fitness 🏏</title>
+
+<style>
+:root {
+  --blue-dark: #1c5369;
+  --green: #56a979;
+  --ink: #17394a;
+  --muted: #536b78;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: var(--ink);
+  background:
+    linear-gradient(#0b26384a,#0b26386b),
+    url('cricket-background-upright.png') center center / cover fixed no-repeat;
+}
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+header {
+  padding: 20px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: #f7fbffcf;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid #ffffff66;
+}
+
+.logo {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #174d65;
+}
+
+nav { display: flex; gap: 8px; }
+
+nav button {
+  border: 0;
+  background: transparent;
+  padding: 10px 14px;
+  border-radius: 12px;
+  color: var(--ink);
+}
+
+nav button:hover { background: #f0f3f8; }
+
+main {
+  max-width: 1050px;
+  margin: auto;
+  padding: 35px 22px 65px;
+}
+
+.hidden { display: none !important; }
+
+.hero {
+  padding: 42px 35px;
+  background: #eaf6f2b8;
+  border: 1px solid #ffffff9c;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #123b4b;
+  border-radius: 25px;
+  margin-bottom: 35px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "🏏 🏆 🏏";
+  position: absolute;
+  right: 20px;
+  bottom: 15px;
+  font-size: 28px;
+}
+
+.eyebrow {
+  color: var(--blue-dark);
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(30px,5vw,46px);
+  margin: 12px 0;
+}
+
+h2 { font-size: 24px; }
+p { line-height: 1.7; color: var(--muted); }
+.section { margin-top: 35px; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+
+.day-card {
+  border: 1px solid #ffffffa8;
+  border-radius: 23px;
+  padding: 28px;
+  min-height: 225px;
+  text-align: left;
+  color: #123b4b;
+  background: #ffffff45 !important;
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  box-shadow: 0 8px 28px #06283a30;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.day-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px #34445b30;
+}
+
+.day-card.blue { background: #d9edf455 !important; }
+.day-card.pink { background: #f5e6d255 !important; }
+
+.day-number {
+  font-size: 43px;
+  font-weight: 800;
+  opacity: .85;
+}
+
+.day-card h2 { margin: 12px 0 5px; }
+
+.day-card small {
+  color: #405e6c;
+  font-size: 13px;
+}
+
+.panel {
+  background: #f8fcfbdc;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid #ffffffa8;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 5px 25px #34445b0b;
+}
+
+.back {
+  border: 0;
+  background: #edf1f7;
+  border-radius: 12px;
+  padding: 11px 16px;
+  margin-bottom: 20px;
+  color: var(--ink);
+}
+
+.video-list {
+  display: grid;
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.video {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #f7f8fb;
+  padding: 15px;
+  border-radius: 14px;
+}
+
+.video-info { min-width: 0; }
+
+.video-label {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.video a {
+  color: var(--blue-dark);
+  text-decoration: none;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.video a:hover { text-decoration: underline; }
+
+.remove {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #ffe8ef;
+  color: #bb6485;
+  font-size: 23px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+
+.remove:hover {
+  background: #f8cbd9;
+  transform: scale(1.08);
+}
+
+.add-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #e2e6ed;
+  border-radius: 12px;
+  padding: 13px;
+  outline: none;
+}
+
+input:focus { border-color: var(--blue-dark); }
+
+.primary {
+  border: 0;
+  border-radius: 12px;
+  padding: 13px 19px;
+  background: #d9edf4;
+  color: #42658d;
+  font-weight: 700;
+}
+
+.primary:hover { background: #c8e0ff; }
+
+.calendar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.calendar-head h2 {
+  text-align: center;
+  margin: 0;
+}
+
+.month-arrow {
+  border: 0;
+  background: #edf2f9;
+  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  font-size: 21px;
+  color: var(--ink);
+}
+
+.month-arrow:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+}
+
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  gap: 7px;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  padding: 8px 0;
+}
+
+.date {
+  border: 0;
+  border-radius: 12px;
+  aspect-ratio: 1;
+  font-weight: 600;
+  position: relative;
+  transition: .15s;
+}
+
+.date:hover { transform: scale(1.05); }
+
+.date-icon {
+  display: block;
+  width: 34px;
+  height: 20px;
+  margin: 2px auto 0;
+}
+
+.date-icon svg {
+  width: 34px;
+  height: 20px;
+  display: block;
+}
+
+.date.bat-day {
+  background: #d9edf4ed;
+  color: #1c5369;
+}
+
+.date.ball-day {
+  background: #f5e6d2ed;
+  color: #80512c;
+}
+
+.date.done { outline: 2px solid var(--green); }
+
+.date.done::after {
+  content: "✓";
+  position: absolute;
+  top: 1px;
+  right: 4px;
+  font-size: 11px;
+  color: var(--green);
+  font-weight: 900;
+}
+
+.date.selected { box-shadow: inset 0 0 0 2px #68798e; }
+.empty { background: transparent; }
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 12px;
+  margin: 20px 0;
+}
+
+.legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.side-panel {
+  margin-top: 23px;
+  padding: 23px;
+  border-radius: 18px;
+  background: #f7fbf2e8;
+  border: 1px solid #ffffffb0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.side-panel.bat-panel { background: #e3f1f5e8; }
+.side-panel.ball-panel { background: #f7ecdee8; }
+
+.complete {
+  background: #e3f4e9;
+  color: #34845b;
+  border: 0;
+  padding: 13px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.complete.checked { background: #c9ecd6; }
+
+#wicket-game {
+  margin-top: 22px;
+  padding: 18px;
+  border-radius: 18px;
+  background: #dceee7;
+  text-align: center;
+  color: #17394a;
+}
+
+#wicket-stage {
+  position: relative;
+  height: 190px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: linear-gradient(#d9eff5 0 68%,#a8c98c 68%);
+  margin: 12px 0;
+}
+
+#wicket-ball {
+  position: absolute;
+  left: 12%;
+  bottom: 22px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px solid #a51f2d;
+  background: radial-gradient(circle at 35% 30%,#ff8585,#c92335 65%,#811421);
+  cursor: pointer;
+  box-shadow: 0 3px 7px #19374655;
+  z-index: 3;
+}
+
+#wicket-ball::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: #fff2e9;
+  top: 12px;
+  left: 2px;
+  transform: rotate(-35deg);
+}
+
+#wicket-ball:focus-visible {
+  outline: 4px solid #245d78;
+  outline-offset: 4px;
+}
+
+#wicket-ball.bowling {
+  animation: bowlFlight 1.35s cubic-bezier(.35,.02,.65,1) forwards;
+}
+
+@keyframes bowlFlight {
+  0% { left:12%; bottom:22px; transform:rotate(0) scale(1); }
+  45% { bottom:112px; }
+  100% { left:76%; bottom:35px; transform:rotate(900deg) scale(.82); }
+}
+
+.wicket {
+  position: absolute;
+  right: 13%;
+  bottom: 26px;
+  width: 62px;
+  height: 112px;
+  z-index: 2;
+}
+
+.stump {
+  position: absolute;
+  bottom: 0;
+  width: 7px;
+  height: 100px;
+  border-radius: 4px;
+  background: linear-gradient(90deg,#d8b77d,#fff0c5,#b88b4d);
+  transform-origin: bottom center;
+}
+
+.stump.one { left:4px; }
+.stump.two { left:27px; }
+.stump.three { left:50px; }
+
+.bails {
+  position: absolute;
+  top: 5px;
+  left: 1px;
+  width: 60px;
+  height: 7px;
+  border-radius: 5px;
+  background: #f4d99d;
+}
+
+.wicket.hit .stump.one {
+  animation: stumpLeft .55s ease-out 1.12s forwards;
+}
+
+.wicket.hit .stump.two {
+  animation: stumpRight .55s ease-out 1.12s forwards;
+}
+
+.wicket.hit .stump.three {
+  animation: stumpLeft .55s ease-out 1.12s forwards;
+}
+
+.wicket.hit .bails {
+  animation: bailFly .7s ease-out 1.12s forwards;
+}
+
+@keyframes stumpLeft {
+  to { transform:rotate(-62deg); }
+}
+
+@keyframes stumpRight {
+  to { transform:rotate(62deg); }
+}
+
+@keyframes bailFly {
+  to {
+    transform:translate(35px,-70px) rotate(130deg);
+    opacity:0;
+  }
+}
+
+#wicket-message {
+  min-height: 26px;
+  font-weight: 800;
+  color: #245d45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #wicket-ball.bowling,
+  .wicket.hit .stump.one,
+  .wicket.hit .stump.two,
+  .wicket.hit .stump.three,
+  .wicket.hit .bails {
+    animation-duration:.01ms;
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: white;
+  font-size: 12px;
+  text-shadow: 0 1px 4px #0008;
+}
+
+@media(max-width:600px) {
+  header { padding: 17px; }
+  main { padding: 22px 14px 50px; }
+  .cards { grid-template-columns: 1fr; }
+  .hero { padding: 28px 22px; }
+  .add-form { flex-direction: column; }
+  .month-grid { gap: 4px; }
+  .date { border-radius: 8px; font-size: 12px; }
+  .calendar-head h2 { font-size: 19px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🏏 CRICKET FITNESS</div>
+  <nav>
+    <button onclick="showHome()">Home</button>
+    <button onclick="showCalendar()">♡ Calendar</button>
+  </nav>
+</header>
+
+<main>
+
+<section id="home">
+  <div class="hero">
+    <div class="eyebrow">YOUR PERSONAL CRICKET FITNESS SPACE</div>
+    <h1>Welcome to Cricket Fitness! 🏏</h1>
+    <p>Your cricket-inspired workout journey starts here. Train, play and celebrate every little win!</p>
+  </div>
+
+  <div class="section">
+    <h2>Choose your workout 🏏</h2>
+    <p>Which workout are we doing today?</p>
+
+    <div class="cards">
+      <button class="day-card blue" onclick="showDay(1)">
+        <div class="day-number" aria-hidden="true">🏏</div>
+        <h2>Day Bat</h2>
+        <small>Bat meets ball · Your workout plan →</small>
+      </button>
+
+      <button class="day-card pink" onclick="showDay(2)">
+        <div class="day-number" aria-hidden="true">🏏</div>
+        <h2>Day Ball</h2>
+        <small>Ball hits the stumps · Your workout plan →</small>
+      </button>
+    </div>
+  </div>
+
+  <div class="section panel">
+    <h2>My cricket progress 🏆</h2>
+    <p id="progress">0 completed workouts</p>
+  </div>
+</section>
+
+<section id="workout" class="hidden">
+  <button class="back" onclick="showHome()">← Back home</button>
+
+  <div class="panel">
+    <div class="eyebrow" id="day-label">YOUR WORKOUT</div>
+    <h1 id="day-title">Day Bat 🏏</h1>
+    <p>Here are your workout videos! Click any link to watch it on YouTube.</p>
+
+    <div class="video-list" id="videos"></div>
+
+    <h3>Add another video +</h3>
+    <p>Paste a YouTube video or Shorts link below.</p>
+
+    <form class="add-form" onsubmit="addVideo(event)">
+      <input id="video-url" type="url" placeholder="Paste your YouTube link here..." required>
+      <button class="primary" type="submit">+ Add video</button>
+    </form>
+
+    <p id="add-message" aria-live="polite"></p>
+  </div>
+</section>
+
+<section id="calendar" class="hidden">
+  <button class="back" onclick="showHome()">← Back home</button>
+
+  <div class="panel">
+    <div class="eyebrow">YOUR PERSONAL WORKOUT TRACKER</div>
+    <h1>My Calendar ♡</h1>
+    <p>Choose a date to see which workout is scheduled. Complete your workout, then tap the cricket ball to bowl a wicket!</p>
+
+    <div class="legend">
+      <span>🏏 Day Bat · odd dates</span>
+      <span>🏏 Day Ball · even dates</span>
+      <span><i class="dot" style="background:#56a979"></i> Completed ✓</span>
+    </div>
+
+    <div class="calendar-head">
+      <button class="month-arrow" id="previous-month" onclick="changeMonth(-1)" aria-label="Previous month">←</button>
+      <h2 id="month-title">January 2026</h2>
+      <button class="month-arrow" id="next-month" onclick="changeMonth(1)" aria-label="Next month">→</button>
+    </div>
+
+    <div class="month-grid" id="month-grid"></div>
+
+    <div class="side-panel hidden" id="date-panel">
+      <div class="eyebrow">YOUR SELECTED DATE</div>
+      <h2 id="selected-date"></h2>
+      <p id="selected-day"></p>
+      <p id="selected-colour"></p>
+
+      <div id="wicket-game" class="hidden">
+        <strong>🏏 Tap the ball to bowl!</strong>
+
+        <div id="wicket-stage" aria-label="Tap the cricket ball to bowl it towards the stumps">
+          <div id="wicket-ball"
+            role="button"
+            tabindex="0"
+            aria-label="Bowl the ball"
+            onclick="bowlBall()"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();bowlBall();}">
+          </div>
+
+          <div class="wicket" id="wicket">
+            <div class="bails"></div>
+            <div class="stump one"></div>
+            <div class="stump two"></div>
+            <div class="stump three"></div>
+          </div>
+        </div>
+
+        <div id="wicket-message" aria-live="polite">Tap the red ball to knock the bails off!</div>
+        <button class="complete" id="complete-button" onclick="toggleComplete()">✓ Mark workout as completed</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>Made for your cricket fitness journey 🏏</footer>
+
+<script>
+
+// ORIGINAL WORKOUT LINKS
+
+const initialVideos = {
+  1: [
+    "https://www.youtube.com/watch?v=R1IGZKl6v-U",
+    "https://www.youtube.com/shorts/N5ENAsa7Iiw",
+    "https://www.youtube.com/shorts/PkYvDt8Ow_8",
+    "https://www.youtube.com/shorts/1m0TpjtUYhM"
+  ],
+  2: [
+    "https://www.youtube.com/watch?v=R1IGZKl6v-U",
+    "https://www.youtube.com/shorts/x6-iFHfoKpI",
+    "https://www.youtube.com/shorts/1m0TpjtUYhM"
+  ]
+};
+
+// LOAD SAVED INFORMATION
+
+function load(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+let videos = load("stitchAngelVideos", null);
+
+if (!videos || !Array.isArray(videos[1]) || !Array.isArray(videos[2])) {
+  videos = {
+    1: [...initialVideos[1]],
+    2: [...initialVideos[2]]
+  };
+}
+
+let completed = load("stitchAngelCompleted", []);
+if (!Array.isArray(completed)) completed = [];
+
+let currentDay = 1;
+let month = 0;
+let year = 2026;
+let selected = null;
+
+function save() {
+  try {
+    localStorage.setItem("stitchAngelVideos", JSON.stringify(videos));
+    localStorage.setItem("stitchAngelCompleted", JSON.stringify(completed));
+  } catch (error) {
+    console.warn("Could not save locally", error);
+  }
+}
+
+// PAGE NAVIGATION
+
+function hidePages() {
+  ["home", "workout", "calendar"].forEach(id => {
+    document.getElementById(id).classList.add("hidden");
+  });
+}
+
+function showHome() {
+  hidePages();
+  document.getElementById("home").classList.remove("hidden");
+  updateProgress();
+}
+
+function showDay(day) {
+  currentDay = day;
+  hidePages();
+  document.getElementById("workout").classList.remove("hidden");
+
+  document.getElementById("day-title").textContent =
+    day === 1 ? "Day Bat 🏏" : "Day Ball 🏏";
+
+  document.getElementById("day-label").textContent =
+    day === 1 ? "YOUR DAY BAT WORKOUT" : "YOUR DAY BALL WORKOUT";
+
+  document.getElementById("add-message").textContent = "";
+  renderVideos();
+}
+
+// DISPLAY VIDEO LINKS
+
+function renderVideos() {
+  const list = document.getElementById("videos");
+  list.innerHTML = "";
+
+  videos[currentDay].forEach((url, index) => {
+    const item = document.createElement("div");
+    item.className = "video";
+
+    const left = document.createElement("div");
+    left.className = "video-info";
+
+    const label = document.createElement("div");
+    label.className = "video-label";
+    label.textContent = "VIDEO " + (index + 1);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "▶ Watch workout on YouTube";
+
+    left.append(label, link);
+
+    const remove = document.createElement("button");
+    remove.className = "remove";
+    remove.textContent = "×";
+    remove.title = "Remove video";
+    remove.setAttribute("aria-label", "Remove video " + (index + 1));
+    remove.onclick = () => removeVideo(index);
+
+    item.append(left, remove);
+    list.append(item);
+  });
+}
+
+function removeVideo(index) {
+  if (!confirm("Are you sure you want to remove this video?")) return;
+  videos[currentDay].splice(index, 1);
+  save();
+  renderVideos();
+}
+
+// ADD VIDEO
+
+function addVideo(event) {
+  event.preventDefault();
+
+  const input = document.getElementById("video-url");
+  const message = document.getElementById("add-message");
+  let url;
+
+  try {
+    url = new URL(input.value.trim());
+  } catch {
+    message.textContent = "Please enter a valid YouTube link.";
+    return;
+  }
+
+  const validHosts = [
+    "youtube.com",
+    "www.youtube.com",
+    "m.youtube.com",
+    "youtu.be",
+    "www.youtu.be"
+  ];
+
+  if (!validHosts.includes(url.hostname)) {
+    message.textContent = "Please use a YouTube link.";
+    return;
+  }
+
+  const isYoutubeVideo = url.hostname.includes("youtu.be")
+    ? url.pathname.length > 1
+    : (
+        (url.pathname === "/watch" && url.searchParams.has("v")) ||
+        url.pathname.startsWith("/shorts/")
+      );
+
+  if (!isYoutubeVideo) {
+    message.textContent = "Please enter a valid video or Shorts link.";
+    return;
+  }
+
+  videos[currentDay].push(url.href);
+  save();
+  input.value = "";
+  message.textContent = "Video added successfully! ♡";
+  renderVideos();
+}
+
+// CALENDAR NAVIGATION
+
+function showCalendar() {
+  hidePages();
+  document.getElementById("calendar").classList.remove("hidden");
+  renderCalendar();
+}
+
+function changeMonth(amount) {
+  const newDate = new Date(year, month + amount, 1);
+  const minimum = new Date(2026, 0, 1);
+  const maximum = new Date(2030, 11, 1);
+
+  if (newDate < minimum || newDate > maximum) return;
+
+  month = newDate.getMonth();
+  year = newDate.getFullYear();
+  selected = null;
+
+  document.getElementById("date-panel").classList.add("hidden");
+  renderCalendar();
+}
+
+// CALENDAR ICONS
+
+const batAndBallIcon = `
+<svg viewBox="0 0 40 22" aria-hidden="true">
+  <g transform="rotate(-35 15 11)">
+    <rect x="12" y="1" width="5" height="15" rx="2"
+      fill="#b98243" stroke="#754b27" stroke-width=".8"/>
+    <rect x="12.8" y="14" width="3.4" height="7" rx="1"
+      fill="#e4c18a"/>
+  </g>
+  <circle cx="29" cy="7" r="4" fill="#c92d3c"
+    stroke="#8f1828" stroke-width="1"/>
+  <path d="M25.8 5.5 Q29 7 32 9"
+    fill="none" stroke="#fff" stroke-width=".8"/>
+  <path d="M21 4 L24 2 M22 9 L25 10"
+    stroke="#e0a52c" stroke-width="1.4" stroke-linecap="round"/>
+</svg>`;
+
+const ballAndStumpsIcon = `
+<svg viewBox="0 0 40 22" aria-hidden="true">
+  <circle cx="8" cy="11" r="4" fill="#c92d3c"
+    stroke="#8f1828" stroke-width="1"/>
+  <path d="M13 11 Q18 4 23 10"
+    fill="none" stroke="#c92d3c" stroke-width="1.2"
+    stroke-dasharray="2 1.5"/>
+  <g fill="#d5ad70" stroke="#8e673a" stroke-width=".7">
+    <rect x="26" y="5" width="2.5" height="14" rx="1"/>
+    <rect x="31" y="5" width="2.5" height="14" rx="1"/>
+    <rect x="36" y="5" width="2.5" height="14" rx="1"/>
+    <rect x="25.5" y="3" width="14" height="2" rx="1"/>
+  </g>
+</svg>`;
+
+// DISPLAY MONTH
+
+function renderCalendar() {
+  const title = document.getElementById("month-title");
+  const grid = document.getElementById("month-grid");
+
+  title.textContent = new Date(year, month).toLocaleDateString("en-GB", {
+    month: "long",
+    year: "numeric"
+  });
+
+  grid.innerHTML = "";
+
+  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  weekdays.forEach(day => {
+    const el = document.createElement("div");
+    el.className = "weekday";
+    el.textContent = day;
+    grid.append(el);
+  });
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const totalDays = new Date(year, month + 1, 0).getDate();
+
+  for (let i = 0; i < firstDay; i++) {
+    const blank = document.createElement("div");
+    blank.className = "empty";
+    grid.append(blank);
+  }
+
+  for (let day = 1; day <= totalDays; day++) {
+    const dateKey =
+      `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+    // ODD DATES = DAY BAT. EVEN DATES = DAY BALL.
+    const type = day % 2 === 0 ? 2 : 1;
+
+    const button = document.createElement("button");
+    button.className = "date " + (type === 1 ? "bat-day" : "ball-day");
+
+    if (completed.includes(dateKey)) button.classList.add("done");
+    if (selected === dateKey) button.classList.add("selected");
+
+    const icon = type === 1 ? batAndBallIcon : ballAndStumpsIcon;
+    button.innerHTML = `${day}<span class="date-icon">${icon}</span>`;
+
+    button.setAttribute(
+      "aria-label",
+      `${dateKey}, ${type === 1 ? "Day Bat" : "Day Ball"}`
+    );
+
+    button.onclick = () => selectDate(dateKey, day, type);
+    grid.append(button);
+  }
+
+  document.getElementById("previous-month").disabled =
+    year === 2026 && month === 0;
+
+  document.getElementById("next-month").disabled =
+    year === 2030 && month === 11;
+}
+
+// SELECT A DATE
+
+function selectDate(key, day, type) {
+  selected = key;
+
+  const panel = document.getElementById("date-panel");
+  panel.classList.remove("hidden");
+  panel.classList.toggle("bat-panel", type === 1);
+  panel.classList.toggle("ball-panel", type === 2);
+
+  const selectedDate = new Date(year, month, day);
+
+  document.getElementById("selected-date").textContent =
+    selectedDate.toLocaleDateString("en-GB", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+
+  document.getElementById("selected-day").textContent =
+    type === 1
+      ? "🏏 Day Bat — bat hits the ball!"
+      : "🏏 Day Ball — ball bowls at the stumps!";
+
+  document.getElementById("selected-colour").textContent =
+    type === 1
+      ? "Odd-numbered date · Day Bat"
+      : "Even-numbered date · Day Ball";
+
+  resetWicketGame();
+  renderCalendar();
+}
+
+// WICKET ANIMATION AND COMPLETION
+
+let bowling = false;
+
+function resetWicketGame() {
+  bowling = false;
+
+  const ball = document.getElementById("wicket-ball");
+  const wicket = document.getElementById("wicket");
+
+  ball.classList.remove("bowling");
+  wicket.classList.remove("hit");
+
+  ball.style.animation = "none";
+  void ball.offsetWidth;
+  ball.style.animation = "";
+
+  document.getElementById("wicket-message").textContent =
+    completed.includes(selected)
+      ? "Wicket taken! This workout is saved ✓"
+      : "Tap the red ball to knock the bails off!";
+
+  document.getElementById("wicket-game").classList.remove("hidden");
+  updateCompleteButton(selected);
+}
+
+function updateCompleteButton(key) {
+  const button = document.getElementById("complete-button");
+  const isDone = completed.includes(key);
+
+  button.textContent = isDone
+    ? "✓ Completed · Undo"
+    : "Mark workout as completed";
+
+  button.classList.toggle("checked", isDone);
+}
+
+function bowlBall() {
+  if (!selected || completed.includes(selected) || bowling) return;
+
+  bowling = true;
+
+  const ball = document.getElementById("wicket-ball");
+  const wicket = document.getElementById("wicket");
+
+  ball.classList.remove("bowling");
+  wicket.classList.remove("hit");
+
+  void ball.offsetWidth;
+  ball.classList.add("bowling");
+
+  document.getElementById("wicket-message").textContent = "Bowling... 🏏";
+
+  window.setTimeout(() => {
+    wicket.classList.add("hit");
+
+    document.getElementById("wicket-message").textContent =
+      "HOWZAT! WICKET HIT! 🎉";
+
+    if (!completed.includes(selected)) {
+      completed.push(selected);
+    }
+
+    save();
+    updateCompleteButton(selected);
+    renderCalendar();
+    updateProgress();
+
+    bowling = false;
+  }, 1150);
+}
+
+function toggleComplete() {
+  if (!selected) return;
+
+  if (completed.includes(selected)) {
+    completed = completed.filter(date => date !== selected);
+    save();
+    resetWicketGame();
+    renderCalendar();
+    updateProgress();
+  } else if (!bowling) {
+    document.getElementById("wicket-message").textContent =
+      "Tap the red ball first to bowl and complete the workout!";
+  }
+}
+
+// HOME PAGE PROGRESS
+
+function updateProgress() {
+  const count = completed.length;
+
+  document.getElementById("progress").textContent =
+    count + (count === 1
+      ? " completed workout day ✓"
+      : " completed workout days ✓");
+}
+
+// START WEBSITE
+
+showHome();
+
+</script>
+</body>
+</html>
